@@ -45,6 +45,6 @@ export default (state = initialState, action) => {
         }
 
     default:
-      return status
+      return state
   }
 }

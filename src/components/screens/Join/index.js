@@ -2,9 +2,15 @@ import React from 'react'
 import { Input, Button } from 'semantic-ui-react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { changeInputUserName, requestJoin } from '../../../actions/join';
+import  { inputUsername, requestJoin } from '../../../actions'
 
-const Join = () => (
+const Join = ({
+  draftUsername,
+  isJoined,
+  isRequestingJoin,
+  inputUsername,
+  requestJoin
+}) => (
   <div>
     <h1>Join!</h1>
     <Input
@@ -14,19 +20,30 @@ const Join = () => (
       size='huge'
       placeholder='Input your name!'
       style={{marginBottom: '14px'}}
-      value={'username'}
-      disabled={false}
-      onChange={(e) => console.log(e.target.value)}
+      value={draftUsername}
+      disabled={isRequestingJoin}
+      onChange={(e) => inputUsername(e.target.value)}
     />
     <Button
       fluid
       primary
-      disabled={false}
+      disabled={isRequestingJoin}
       size='huge'
-      loading={false}
-      onClick={() => console.log('join request')}
+      loading={isRequestingJoin}
+      onClick={() => requestJoin(draftUsername)}
     >Join</Button>
   </div>
 )
 
-export default connect(null, null)(Join)
+const mapStateToProps = state => ({
+  draftUsername: state.user.draftUsername,
+  isJoined: state.user.isJoined,
+  isRequestingJoin: state.user.isRequestingJoin
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  inputUsername,
+  requestJoin
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Join)

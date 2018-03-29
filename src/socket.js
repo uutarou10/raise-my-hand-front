@@ -32,6 +32,10 @@ export const cancel = () => {
   socket.emit('cancel')
 }
 
+socket.on('debug', (payload) => {
+  console.log(payload)
+})
+
 socket.on('currentJobQueue', (queue) => {
   dispatch(updateJobQueue(queue))
 })

@@ -10,7 +10,7 @@ import {
 
 /*---------- emit request ----------*/
 export const REQUEST_JOIN = 'REQUEST_JOIN' 
-export const joinRequest = (username) => {
+export const requestJoin = (username) => {
   return dispatch => {
     join(username)
     dispatch({
@@ -62,6 +62,7 @@ export const toggleStauts = () => {
 export const CANCEL_REQUEST = 'CANCEL_REQUEST'
 export const cancel = () => {
   return dispatch => {
+    console.log('cancel action')
     emitCancel()
     dispatch({
       type: CANCEL_REQUEST
