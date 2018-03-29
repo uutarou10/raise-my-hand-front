@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { changeInputUserName, requestJoin } from '../../../actions/join';
 
-const Join = ({draftUserName, onChangeInput, requestJoin, isRequesting}) => (
+const Join = () => (
   <div>
     <h1>Join!</h1>
     <Input
@@ -14,29 +14,19 @@ const Join = ({draftUserName, onChangeInput, requestJoin, isRequesting}) => (
       size='huge'
       placeholder='Input your name!'
       style={{marginBottom: '14px'}}
-      value={draftUserName}
-      disabled={isRequesting}
-      onChange={(e) => onChangeInput(e.target.value)}
+      value={'username'}
+      disabled={false}
+      onChange={(e) => console.log(e.target.value)}
     />
     <Button
       fluid
       primary
-      disabled={draftUserName.length === 0}
+      disabled={false}
       size='huge'
-      loading={isRequesting}
-      onClick={() => requestJoin(draftUserName)}
+      loading={false}
+      onClick={() => console.log('join request')}
     >Join</Button>
   </div>
 )
 
-const mapStateToProps = state => ({
-  draftUserName: state.join.draftUserName,
-  isRequesting: state.join.isRequesting
-})
-
-const mapDispatchToProps = dispatch => bindActionCreators({
-  onChangeInput: changeInputUserName,
-  requestJoin 
-}, dispatch)
-
-export default connect(mapStateToProps, mapDispatchToProps)(Join)
+export default connect(null, null)(Join)

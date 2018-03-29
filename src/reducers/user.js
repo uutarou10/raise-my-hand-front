@@ -2,7 +2,8 @@ import { COMPLETED_JOIN } from "../constants/actionTypes";
 
 const initialState = {
   isJoined: false,
-  user: {}
+  user: {},
+  userCount: 0
 }
 
 export default (state = initialState, action) => {

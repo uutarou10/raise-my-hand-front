@@ -1,6 +1,7 @@
 const initialState = {
-  jobQueue: [],
-  isRequesting: false
+  queue: [],
+  isRequesting: false,
+  isOpen: false
 }
 
 export default (state = initialState, action) => {
