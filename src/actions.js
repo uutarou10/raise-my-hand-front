@@ -1,10 +1,18 @@
 import { push } from 'react-router-redux'
+import {
+  join,
+  joinAdmin,
+  taskConfirmation as emitTaskConfirmation,
+  question as emitQuestion,
+  toggleStatus as emitToggleStatus,
+  cancel as emitCancel
+} from './socket';
 
 /*---------- emit request ----------*/
 export const REQUEST_JOIN = 'REQUEST_JOIN' 
 export const joinRequest = (username) => {
   return dispatch => {
-    // TODO: リクエスト処理
+    join(username)
     dispatch({
       type: REQUEST_JOIN,
     })
@@ -14,7 +22,7 @@ export const joinRequest = (username) => {
 export const REQUEST_JOIN_ADMIN = 'REQUEST_JOIN_ADMIN'
 export const requestJoinAdmin = (password) => {
   return dispatch => {
-    // TODO: リクエスト処理
+    joinAdmin(password)
     dispatch({
       type: REQUEST_JOIN_ADMIN
     })
@@ -24,7 +32,7 @@ export const requestJoinAdmin = (password) => {
 export const TASK_CONFIRMATION = 'TASK_CONFIRMATION'
 export const taskConfirmation = (user) => {
   return dispatch => {
-    // TODO: リクエスト処理
+    emitTaskConfirmation()
     dispatch({
       type: TASK_CONFIRMATION
     })
@@ -34,7 +42,7 @@ export const taskConfirmation = (user) => {
 export const QUESTION = 'QUESTION'
 export const question = (user) => {
   return dispatch => {
-    // TODO: リクエスト処理
+    emitQuestion()
     dispatch({
       type: QUESTION
     })
@@ -44,7 +52,7 @@ export const question = (user) => {
 export const TOGGLE_STATUS = 'TOGGLE_STATUS'
 export const toggleStauts = () => {
   return dispatch => {
-    // TODO: リクエスト処理
+    emitToggleStatus()
     dispatch({
       type: TOGGLE_STATUS
     })
@@ -54,7 +62,7 @@ export const toggleStauts = () => {
 export const CANCEL_REQUEST = 'CANCEL_REQUEST'
 export const cancel = () => {
   return dispatch => {
-    // TODO: リクエスト処理
+    emitCancel()
     dispatch({
       type: CANCEL_REQUEST
     })

@@ -1,15 +1,15 @@
 import io from 'socket.io-client'
 import store from './store'
-import { completedJoin } from './actions/join';
+import { completeJoin, completeJoinAdmin, completedCancel, updateJobQueue, updateUserCount, updateStatus } from './actions';
 
 const socket = io('http://localhost:3001')
 
-export const debug = (payload) => {
-  socket.emit('debug', payload)
-}
-
 export const join = (name) => {
   socket.emit('join', name)
+}
+
+export const debug = (payload) => {
+  socket.emit('debug', payload)
 }
 
 export const joinAdmin = (password) => {
@@ -24,30 +24,46 @@ export const question = () => {
   socket.emit('question')
 }
 
-export const cancel = (uuid) => {
-  socket.emit('cancel', uuid)
+export const toggleStatus = () => {
+  socket.emit('toggleStatus')
 }
 
-socket.on('debug', (payload) => {
-  console.log('DEBUG', payload)
+export const cancel = () => {
+  socket.emit('cancel')
+}
+
+socket.on('currentJobQueue', (queue) => {
+  dispatch(updateJobQueue(queue))
 })
 
-socket.on('currentJobQueue', (jobQueue) => {
-
-})
-
-socket.on('updateJobQueue', (jobQueue) => {
-
+socket.on('currentStatus', (status) => {
+  dispatch(updateStatus(status))
 })
 
 socket.on('completedJoin', (user) => {
-  store.dispatch(completedJoin(user))
+  if (user.isAdmin) {
+    dispatch(completeJoinAdmin(user))
+  } else {
+    dispatch(completeJoin(user))
+  }
 })
 
-socket.on('faildJoin', (message) => {
-
+socket.on('updateJobQueue', (queue) => {
+  dispatch(updateJobQueue(queue))
 })
 
-socket.on('disconnect', () => {
-
+socket.on('updateUserCount', (count) => {
+  dispatch(updateUserCount(count))
 })
+
+socket.on('updateStatus', (status) => {
+  dispatch(updateStatus(status))
+})
+
+socket.on('canceled', () => {
+  dispatch(completedCancel())
+})
+
+const dispatch = (action) => {
+  store.dispatch(action)
+}
