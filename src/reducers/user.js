@@ -1,9 +1,19 @@
+import { COMPLETED_JOIN } from "../constants/actionTypes";
+
 const initialState = {
-  isRequestingJoin: false,
   isJoined: false,
   user: {}
 }
 
 export default (state = initialState, action) => {
-  return state
+  switch (action.type) {
+    case COMPLETED_JOIN:
+      return Object.assign({}, state, {
+        isJoined: true,
+        user: action.payload.user
+      })
+    
+    default:
+      return state
+  }
 }

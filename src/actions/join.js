@@ -1,4 +1,5 @@
-import { CHANGE_INPUT_USER_NAME } from "../constants/actionTypes";
+import { push } from 'react-router-redux'
+import { CHANGE_INPUT_USER_NAME, REQUEST_JOIN, COMPLETED_JOIN } from "../constants/actionTypes";
 import { join } from "../socket";
 
 export const changeInputUserName = (input) => ({
@@ -8,13 +9,23 @@ export const changeInputUserName = (input) => ({
   }
 })
 
-export const requestingJoin = (isRequesting) => ({
-  
-})
-
 export const requestJoin = (name) => {
   return dispatch => {
     join(name)
-    dispatch(requestingJoin(true))
+    dispatch({
+      type: REQUEST_JOIN
+    })
+  }
+}
+
+export const completedJoin = (user) => {
+  return dispatch => {
+    dispatch({
+      type: COMPLETED_JOIN,
+      payload: {
+        user
+      }
+    })
+    dispatch(push('/'))
   }
 }

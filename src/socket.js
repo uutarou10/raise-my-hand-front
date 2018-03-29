@@ -1,4 +1,6 @@
 import io from 'socket.io-client'
+import store from './store'
+import { completedJoin } from './actions/join';
 
 const socket = io('http://localhost:3001')
 
@@ -39,7 +41,7 @@ socket.on('updateJobQueue', (jobQueue) => {
 })
 
 socket.on('completedJoin', (user) => {
-
+  store.dispatch(completedJoin(user))
 })
 
 socket.on('faildJoin', (message) => {
