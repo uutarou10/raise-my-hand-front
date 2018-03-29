@@ -9,19 +9,20 @@ const Main = ({
   isRequestingCancel,
   taskConfirmation,
   question,
-  isRequesting
+  isRequesting,
+  cancel
 }) => (
   <div>
     <h1>Raise my hand!</h1>
     <Button.Group>
       <Button
         size='huge'
-        onClick={() => taskConfirmation() }
+        onClick={taskConfirmation}
         disabled={isRequesting}
       ><Icon name='pencil' />課題チェック</Button>
       <Button
         size='huge'
-        onClick={() => question() }
+        onClick={question}
         disabled={isRequesting}
       ><Icon name='question' />質問</Button>
       { isRequesting ? (
@@ -29,6 +30,7 @@ const Main = ({
           color='red'
           size='huge'
           onClick={cancel}
+          loading={isRequestingCancel}
         >キャンセル</Button>
       ): (null)}
     </Button.Group>

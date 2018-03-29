@@ -31,7 +31,8 @@ export default (state = initialState, action) => {
     case COMPLETE_CANCEL:
       return {
         ...state,
-        isRequestingCancel: false
+        isRequestingCancel: false,
+        isRequesting: false
       }
 
     case UPDATE_JOB_QUEUE:
