@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Icon, Divider } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { taskConfirmation, question, cancel } from '../../../actions'
+import { taskConfirmation, question, cancel, exit } from '../../../actions'
 import QueueTable from '../../QueueTable';
 import Header from '../../Header';
 
@@ -14,10 +14,11 @@ const Main = ({
   isRequesting,
   cancel,
   queue,
-  user
+  user,
+  exit
 }) => (
   <div>
-    <Header user={user} />
+    <Header user={user} exit={exit} />
     <Button.Group>
       <Button
         size='huge'
@@ -54,7 +55,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
   taskConfirmation,
   question,
-  cancel
+  cancel,
+  exit
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main)

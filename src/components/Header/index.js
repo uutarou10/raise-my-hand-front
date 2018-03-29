@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Icon, Button } from 'semantic-ui-react'
 
-const Header = ({user}) => (
+const Header = ({user, exit}) => (
   <Grid columns={2}>
     <Grid.Column>
       <h1>Raise my hand!</h1>
@@ -16,6 +16,7 @@ const Header = ({user}) => (
           color='red'
           size='mini'
           style={{marginLeft: '8px'}}
+          onClick={exit}
         >Exit</Button>
       </p>
     </Grid.Column>

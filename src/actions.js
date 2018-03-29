@@ -5,7 +5,7 @@ import {
   taskConfirmation as emitTaskConfirmation,
   question as emitQuestion,
   toggleStatus as emitToggleStatus,
-  cancel as emitCancel
+  cancel as emitCancel,
 } from './socket';
 
 /*---------- emit request ----------*/
@@ -69,6 +69,13 @@ export const cancel = () => {
     dispatch({
       type: CANCEL_REQUEST
     })
+  }
+}
+
+export const exit = () => {
+  return dispatch => {
+    window.localStorage.removeItem('username')
+    window.location.href = '/join'
   }
 }
 
