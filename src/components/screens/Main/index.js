@@ -1,8 +1,9 @@
 import React from 'react'
-import { Button, Icon } from 'semantic-ui-react'
+import { Button, Icon, Divider } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { taskConfirmation, question, cancel } from '../../../actions'
+import QueueTable from '../../QueueTable';
 
 const Main = ({
   isOpen,
@@ -10,7 +11,9 @@ const Main = ({
   taskConfirmation,
   question,
   isRequesting,
-  cancel
+  cancel,
+  queue,
+  user
 }) => (
   <div>
     <h1>Raise my hand!</h1>
@@ -34,13 +37,17 @@ const Main = ({
         >キャンセル</Button>
       ): (null)}
     </Button.Group>
+    <Divider />
+    <QueueTable queue={queue} user={user} />
   </div>
 )
 
 const mapStateToProps = state => ({
   isOpen: state.job.isOpen,
   isRequesting: state.job.isRequesting,
-  isRequestingCancel: state.job.isRequestingCancel
+  isRequestingCancel: state.job.isRequestingCancel,
+  queue: state.job.queue,
+  user: state.user.user
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
