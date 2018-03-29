@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { taskConfirmation, question, cancel } from '../../../actions'
 import QueueTable from '../../QueueTable';
+import Header from '../../Header';
 
 const Main = ({
   isOpen,
@@ -16,7 +17,7 @@ const Main = ({
   user
 }) => (
   <div>
-    <h1>Raise my hand!</h1>
+    <Header user={user} />
     <Button.Group>
       <Button
         size='huge'
