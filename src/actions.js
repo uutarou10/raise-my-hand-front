@@ -12,6 +12,9 @@ import {
 export const REQUEST_JOIN = 'REQUEST_JOIN' 
 export const requestJoin = (username) => {
   return dispatch => {
+    if (window.localStorage.getItem('username') === null) {
+      window.localStorage.setItem('username', username)
+    }
     join(username)
     dispatch({
       type: REQUEST_JOIN,

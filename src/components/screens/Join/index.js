@@ -4,36 +4,48 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import  { inputUsername, requestJoin } from '../../../actions'
 
-const Join = ({
-  draftUsername,
-  isJoined,
-  isRequestingJoin,
-  inputUsername,
-  requestJoin
-}) => (
-  <div>
-    <h1>Join!</h1>
-    <Input
-      fluid
-      icon='user'
-      iconPosition='left'
-      size='huge'
-      placeholder='Input your name!'
-      style={{marginBottom: '14px'}}
-      value={draftUsername}
-      disabled={isRequestingJoin}
-      onChange={(e) => inputUsername(e.target.value)}
-    />
-    <Button
-      fluid
-      primary
-      disabled={isRequestingJoin}
-      size='huge'
-      loading={isRequestingJoin}
-      onClick={() => requestJoin(draftUsername)}
-    >Join</Button>
-  </div>
-)
+class Join extends React.Component {
+  componentDidMount() {
+    if (window.localStorage.getItem('username')) {
+      this.props.requestJoin(window.localStorage.getItem('username'))
+    }
+  }
+
+  render() {
+    const {
+      draftUsername,
+      // isJoined,
+      isRequestingJoin,
+      inputUsername,
+      requestJoin
+    } = this.props
+
+    return (
+      <div>
+        <h1>Join!</h1>
+        <Input
+          fluid
+          icon='user'
+          iconPosition='left'
+          size='huge'
+          placeholder='Input your name!'
+          style={{marginBottom: '14px'}}
+          value={draftUsername}
+          disabled={isRequestingJoin}
+          onChange={(e) => inputUsername(e.target.value)}
+        />
+        <Button
+          fluid
+          primary
+          disabled={isRequestingJoin}
+          size='huge'
+          loading={isRequestingJoin}
+          onClick={() => requestJoin(draftUsername)}
+        >Join</Button>
+      </div>
+    )
+  }
+}
 
 const mapStateToProps = state => ({
   draftUsername: state.user.draftUsername,
