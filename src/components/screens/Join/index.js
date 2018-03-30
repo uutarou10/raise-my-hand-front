@@ -2,19 +2,23 @@ import React from 'react'
 import { Input, Button } from 'semantic-ui-react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 import  { inputUsername, requestJoin } from '../../../actions'
 
 class Join extends React.Component {
   componentDidMount() {
     if (window.localStorage.getItem('username')) {
-      this.props.requestJoin(window.localStorage.getItem('username'))
+      return this.props.requestJoin(window.localStorage.getItem('username'))
+    }
+
+    if (this.props.isJoined) {
+      this.props.push('/')
     }
   }
 
   render() {
     const {
       draftUsername,
-      // isJoined,
       isRequestingJoin,
       inputUsername,
       requestJoin
@@ -55,7 +59,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   inputUsername,
-  requestJoin
+  requestJoin,
+  push
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Join)

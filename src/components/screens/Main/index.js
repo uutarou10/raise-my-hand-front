@@ -9,6 +9,9 @@ import Header from '../../Header';
 
 class Main extends React.Component {
   componentDidMount() {
+    if (!this.props.isJoined) {
+      this.props.push('/join')
+    }
   }
 
   render() {
@@ -58,7 +61,8 @@ const mapStateToProps = state => ({
   isRequesting: state.job.isRequesting,
   isRequestingCancel: state.job.isRequestingCancel,
   queue: state.job.queue,
-  user: state.user.user
+  user: state.user.user,
+  isJoined: state.user.isJoined
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
