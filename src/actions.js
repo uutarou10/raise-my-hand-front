@@ -25,6 +25,9 @@ export const requestJoin = (username) => {
 export const REQUEST_JOIN_ADMIN = 'REQUEST_JOIN_ADMIN'
 export const requestJoinAdmin = (password) => {
   return dispatch => {
+    if (window.localStorage.getItem('admin_password') === null) {
+      window.localStorage.setItem('admin_password', password)
+    }
     joinAdmin(password)
     dispatch({
       type: REQUEST_JOIN_ADMIN
