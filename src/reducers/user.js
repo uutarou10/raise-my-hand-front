@@ -1,4 +1,4 @@
-import { REQUEST_JOIN, REQUEST_JOIN_ADMIN, COMPLETE_JOIN, COMPLETE_JOIN_ADMIN, UPDATE_USER_COUNT, INPUT_USERNAME, INPUT_PASSWORD } from "../actions";
+import { REQUEST_JOIN, REQUEST_JOIN_ADMIN, COMPLETE_JOIN, COMPLETE_JOIN_ADMIN, UPDATE_USER_COUNT, INPUT_USERNAME, INPUT_PASSWORD, EXIT } from "../actions";
 
 const initialState = {
   user: {},
@@ -23,7 +23,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isRequestingJoin: false,
-        user: action.payload.user
+        user: action.payload.user,
+        isJoined: true
+      }
+    case EXIT:
+      return {
+        ...state,
+        isJoined: false,
+        user: initialState.user
       }
     
     case UPDATE_USER_COUNT:

@@ -72,9 +72,13 @@ export const cancel = () => {
   }
 }
 
+export const EXIT = 'EXIT'
 export const exit = () => {
   return dispatch => {
     window.localStorage.removeItem('username')
+    dispatch({
+      type: EXIT
+    })
     window.location.href = '/join'
   }
 }
