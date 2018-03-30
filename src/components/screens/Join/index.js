@@ -37,7 +37,7 @@ class Join extends React.Component {
         <Button
           fluid
           primary
-          disabled={isRequestingJoin}
+          disabled={isRequestingJoin || draftUsername.length === 0}
           size='huge'
           loading={isRequestingJoin}
           onClick={() => requestJoin(draftUsername)}
