@@ -8,12 +8,7 @@ import QueueTable from '../../QueueTable';
 import Header from '../../Header';
 
 class Main extends React.Component {
-  componentWillMount() {
-    if (!this.props.user.isJoined) {
-      this.props.push('/join')
-    } else if (this.props.user.isAdmin) {
-      this.props.push('/admin')
-    }
+  componentDidMount() {
   }
 
   render() {
@@ -36,12 +31,12 @@ class Main extends React.Component {
           <Button
             size='huge'
             onClick={taskConfirmation}
-            disabled={isRequesting && !isOpen}
+            disabled={isRequesting || !isOpen}
           ><Icon name='pencil' />課題チェック</Button>
           <Button
             size='huge'
             onClick={question}
-            disabled={isRequesting && !isOpen}
+            disabled={isRequesting || !isOpen}
           ><Icon name='question' />質問</Button>
           { isRequesting ? (
             <Button
