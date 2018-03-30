@@ -56,7 +56,7 @@ export const question = (user) => {
 }
 
 export const TOGGLE_STATUS = 'TOGGLE_STATUS'
-export const toggleStauts = () => {
+export const toggleStatus = () => {
   return dispatch => {
     emitToggleStatus()
     dispatch({

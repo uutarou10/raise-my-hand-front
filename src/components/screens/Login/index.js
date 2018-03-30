@@ -8,13 +8,8 @@ import { inputPassword, requestJoinAdmin } from '../../../actions'
 class Login extends React.Component {
   componentDidMount() {
     if (window.localStorage.getItem('admin_password')) {
-      this.props.requestJoinAdmin(window.localStorage.getItem('admin_password'))
+      return this.props.requestJoinAdmin(window.localStorage.getItem('admin_password'))
     }
-
-    if (this.props.isJoined) {
-      this.props.push('/admin')
-    }
-
   }
 
   render() {
