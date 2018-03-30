@@ -66,9 +66,9 @@ export const toggleStauts = () => {
 }
 
 export const CANCEL_REQUEST = 'CANCEL_REQUEST'
-export const cancel = () => {
+export const cancel = (job = null) => {
   return dispatch => {
-    emitCancel()
+    emitCancel(job)
     dispatch({
       type: CANCEL_REQUEST
     })

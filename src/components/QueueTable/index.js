@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table, Button } from 'semantic-ui-react'
 
-const QueueTable = ({queue, isAdmin, user}) => (
+const QueueTable = ({queue, isAdmin, user, cancel}) => (
   <div>
     <Table unstackable celled>
       <Table.Header>
@@ -27,7 +27,9 @@ const QueueTable = ({queue, isAdmin, user}) => (
               <Table.Cell>{job.timestamp}</Table.Cell>
               {isAdmin ? (
                 <Table.Cell>
-                  <Button>Done</Button>
+                  <Button
+                    onClick={() => cancel(job)}
+                  >Done</Button>
                 </Table.Cell>
               ) : (null)}
             </Table.Row>

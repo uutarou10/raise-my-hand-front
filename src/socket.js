@@ -28,8 +28,8 @@ export const toggleStatus = () => {
   socket.emit('toggleStatus')
 }
 
-export const cancel = () => {
-  socket.emit('cancel')
+export const cancel = (job = null) => {
+  socket.emit('cancel', job !== null ? job.uuid : null)
 }
 
 socket.on('debug', (payload) => {
